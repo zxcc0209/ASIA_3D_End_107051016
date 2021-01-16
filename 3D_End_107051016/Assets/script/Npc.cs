@@ -39,12 +39,19 @@ public class Npc : MonoBehaviour
 
     }
     */
+    private Animator ani;
+    private void Awake()
+    {
+        ani = GetComponent<Animator>();
+    }
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.name == "小美")
         {
             PlayerinArea = true;
             StartCoroutine(Dialoug());
+            ani.SetBool("對話開關",true);
 
         }
     }
@@ -54,6 +61,7 @@ public class Npc : MonoBehaviour
         {
             PlayerinArea = false;
             stopDialoug();
+            ani.SetBool("對話開關", false);
 
         }
     }
